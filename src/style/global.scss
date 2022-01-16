@@ -1,0 +1,89 @@
+*{
+  margin: 0;
+  padding: 0; 
+}
+body, html{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body{
+  margin-top: unset!important;
+  padding-top: 61px;
+}
+.app-container{
+  position: relative;
+  margin: 0 auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+// 断点隐藏类
+@media screen and (max-width: 768px) {
+  .app-hide-xs {
+    display:none!important
+  }
+
+  .app-show-xs-block {
+    display: block!important
+  }
+
+  .app-show-xs-inline {
+    display: inline!important
+  }
+
+  .app-show-xs-inline-block {
+    display: inline-block!important
+  }
+}
+@media screen and (min-width: 768px) {
+  .app-container {
+    width:750px;
+  }
+}
+@media screen and (min-width: 992px){
+  .app-container {
+    width:970px;
+  }
+  .app-hide-md {
+    display: none!important
+  }
+
+  .app-show-md-block {
+    display: block!important
+  }
+
+  .app-show-md-inline {
+    display: inline!important
+  }
+
+  .app-show-md-inline-block {
+    display: inline-block!important
+  }
+}
+@media screen and (min-width: 1200px) {
+  .app-container {
+    width:1170px;
+  }
+  .app-hide-lg {
+    display: none!important
+  }
+
+  .app-show-lg-block {
+    display: block!important
+  }
+
+  .app-show-lg-inline {
+    display: inline!important
+  }
+
+  .app-show-lg-inline-block {
+    display: inline-block!important
+  }
+}
+ul {
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
