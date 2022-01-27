@@ -1,0 +1,54 @@
+/* 文字基本颜色 */
+$text-color:#333;//基本色
+$text-color-inverse:#fff;//反色
+$text-color-grey:#999;//辅助灰色，如加载更多的提示信息
+$text-color-placeholder: #808080;
+$text-color-disable:#c0c0c0;
+$text-colo-hover: #009688;
+/* 背景颜色 */
+$bg-color:#ffffff;
+$bg-color-grey:#f8f8f8;
+$bg-color-hover:#f1f1f1;//点击状态颜色
+$bg-color-mask:rgba(0, 0, 0, 0.4);//遮罩颜色
+
+/* 边框颜色 */
+$border-color:#e9e9e9;
+
+/* 尺寸变量 */
+
+/* 文字尺寸 */
+$font-size-sm:12px;
+$font-size-base:14px;
+$font-size-lg:16px;
+
+/* 图片尺寸 */
+$img-size-sm:20px;
+$img-size-base:26px;
+$img-size-lg:40px;
+
+/* Border Radius */
+$border-radius-sm: 2px;
+$border-radius-base: 3px;
+$border-radius-lg: 6px;
+$border-radius-circle: 50%;
+
+/* 水平间距 */
+$spacing-row-sm: 5px;
+$spacing-row-base: 10px;
+$spacing-row-lg: 15px;
+
+/* 垂直间距 */
+$spacing-col-sm: 4px;
+$spacing-col-base: 8px;
+$spacing-col-lg: 12px;
+
+/* 透明度 */
+$opacity-disabled: 0.3; // 组件禁用态的透明度
+
+/* 文章场景相关 */
+$color-title: #333; // 文章标题颜色
+$font-size-title:20px;
+$color-subtitle: #555555; // 二级标题颜色
+$font-size-subtitle:26px;
+$color-paragraph: #3F536E; // 文章段落颜色
+$font-size-paragraph:15px;

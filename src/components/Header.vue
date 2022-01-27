@@ -7,15 +7,15 @@
           <img src="../assets/logo-2.png" alt="" srcset="">
         </router-link>
         <ul class="header-nav app-hide-xs">
-          <li class="header-nav-item"><a href="javascript:;"><i class="iconfont icon-jiaoliu"></i>交流</a></li>
-          <li class="header-nav-item"><a href="javascript:;"><i class="iconfont icon-iconmingxinganli"></i>案例</a></li>
-          <li class="header-nav-item"><a href="javascript:;"><i class="iconfont icon-ui"></i>框架</a></li>
+          <li class="header-nav-item"><a href="javascript:;"><i class="iconfont icon-jiaoliu" />交流</a></li>
+          <li class="header-nav-item"><a href="javascript:;"><i class="iconfont icon-iconmingxinganli" />案例</a></li>
+          <li class="header-nav-item"><a href="javascript:;"><i class="iconfont icon-ui" />框架</a></li>
         </ul>
       </div>
       <!-- 右边导航 -->
       <div class="header-right">
         <ul class="header-nav">
-          <li class="header-nav-item"><a class="avatar app-hide-xs" href="javascript:;"><i class="iconfont icon-touxiang"></i></a></li>
+          <li class="header-nav-item"><a class="avatar app-hide-xs" href="javascript:;"><i class="iconfont icon-touxiang" /></a></li>
           <li class="header-nav-item"><router-link class="login" to="/login">登录</router-link></li>
           <li class="header-nav-item"><a class="register" href="javascript:;">注册</a></li>
         </ul>

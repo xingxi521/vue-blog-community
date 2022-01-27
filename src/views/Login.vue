@@ -22,7 +22,7 @@
                     <a-input v-model="formData.captcha" addon-before="验证码" autocomplete="off" placeholder="请输入验证码" />
                   </a-col>
                   <a-col :span="8">
-                    <div class="captch" v-html="captchaHtml" @click="getCaptchRequest()"></div>
+                    <div class="captch" @click="getCaptchRequest()" v-html="captchaHtml" />
                   </a-col>
                 </a-row>
               </a-form-model-item>
@@ -66,7 +66,7 @@
                     <a-input v-model="formData.captcha" addon-before="验证码" autocomplete="off" placeholder="请输入验证码" />
                   </a-col>
                   <a-col :span="8">
-                    <div class="captch" v-html="captchaHtml" @click="getCaptchRequest()"></div>
+                    <div class="captch" @click="getCaptchRequest()" v-html="captchaHtml" />
                   </a-col>
                 </a-row>
               </a-form-model-item>
@@ -93,7 +93,7 @@
                     <a-input v-model="formData.captcha" addon-before="验证码" autocomplete="off" placeholder="请输入验证码" />
                   </a-col>
                   <a-col :span="8">
-                    <div class="captch" v-html="captchaHtml" @click="getCaptchRequest()"></div>
+                    <div class="captch" @click="getCaptchRequest()" v-html="captchaHtml" />
                   </a-col>
                 </a-row>
               </a-form-model-item>

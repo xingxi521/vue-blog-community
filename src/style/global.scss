@@ -87,3 +87,27 @@ ul {
 a{
   text-decoration: none;
 }
+.box-panel{
+  margin-bottom: 15px;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+}
+.box-panel-title{
+  height: 50px;
+  line-height: 50px;
+  padding: 0 15px;
+  border-bottom: 1px dotted #e9e9e9;
+  color: #333;
+  border-radius: 2px 2px 0 0;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.line{
+  display: inline-block;
+  height: 10px;
+  width: 1px;
+  margin: 0 10px;
+  vertical-align: middle;
+  background-color: #e2e2e2;
+}
