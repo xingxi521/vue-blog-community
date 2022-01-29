@@ -1,7 +1,6 @@
 <template>
   <div class="list-main">
-    <ListItem />
-    <ListItem />
+    <ListItem v-for="item in listData" :key="item._id" :item="item" />
   </div>
 </template>
 
@@ -14,6 +13,13 @@ export default {
   name: 'List',
   components: {
     ListItem
+  },
+  props: {
+    // 数据源
+    listData: {
+      type: Array,
+      default: () => []
+    }
   }
 }
 </script>

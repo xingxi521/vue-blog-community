@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    uid: ''
+    uid: '',
+    isLogin: false
   },
   mutations: {
     // 设置UID

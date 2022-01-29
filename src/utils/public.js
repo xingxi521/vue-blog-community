@@ -58,6 +58,53 @@ export const notifiyError = function (message, isHtml, title, duration) {
     duration: duration || 3
   })
 }
+
+/**
+ * 枚举类创建
+ *  示例：
+  * const STATUS = createEnum({
+  *     AUDIT_WAIT: [1, '审核中'],
+  *     AUDIT_PASS: [2, '审核通过']
+  * })
+  * 获取枚举值：STATUS.AUDIT_WAIT
+  * 获取枚举描述：STATUS.getDesc('AUDIT_WAIT')
+  * 通过枚举值获取描述：STATUS.getDescFromValue(STATUS.WAIT)
+ */
+
+export function createEnum(definition) {
+  const strToValueMap = {}
+  const numToDescMap = {}
+  for (const enumName of Object.keys(definition)) {
+    const [value, desc] = definition[enumName]
+    strToValueMap[enumName] = value
+    numToDescMap[value] = desc
+  }
+  return {
+    ...strToValueMap,
+    getDesc(enumName) {
+      return (definition[enumName] && definition[enumName][1]) || ''
+    },
+    getDescFromValue(value) {
+      return numToDescMap[value] || ''
+    },
+    // 返回一个枚举映射表
+    getMapping() {
+      return numToDescMap
+    },
+    // 返回一个数组对象 key-value形式的
+    getLabelData(label, value, isNum = true) {
+      const tempArr = Object.entries(numToDescMap)
+      const result = []
+      tempArr.forEach(item => {
+        result.push({
+          [label || 'label']: item[1],
+          [value || 'value']: isNum ? Number(item[0]) : item[0]
+        })
+      })
+      return result || []
+    }
+  }
+}
 Vue.prototype.notifiyError = notifiyError
 Vue.prototype.notifiyWarning = notifiyWarning
 Vue.prototype.notifiySuccess = notifiySuccess

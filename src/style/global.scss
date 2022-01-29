@@ -40,6 +40,21 @@ body{
   .app-container {
     width:750px;
   }
+  .app-hide-sm {
+    display: none!important
+  }
+
+  .app-show-sm-block {
+    display: block!important
+  }
+
+  .app-show-sm-inline {
+    display: inline!important
+  }
+
+  .app-show-sm-inline-block {
+    display: inline-block!important
+  }
 }
 @media screen and (min-width: 992px){
   .app-container {
@@ -110,4 +125,46 @@ a{
   margin: 0 10px;
   vertical-align: middle;
   background-color: #e2e2e2;
+}
+.badge-orange{
+  margin-left: 5px;
+  border-radius: 2px;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  display: inline-block;
+  padding: 0 6px;
+  text-align: center;
+  background-color: #FFB800;
+  color: #fff;
+}
+.badge-red{
+  margin-left: 5px;
+  border-radius: 2px;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  display: inline-block;
+  padding: 0 6px;
+  text-align: center;
+  background-color: #FF5722;
+  color: #fff;
+}
+.badge-blue{
+  margin-left: 5px;
+  border-radius: 2px;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  display: inline-block;
+  padding: 0 6px;
+  text-align: center;
+  background-color: #1E9FFF;
+  color: #fff;
+}
+.active-text{
+  color: #009688 !important;
 }

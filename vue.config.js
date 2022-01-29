@@ -22,5 +22,8 @@ module.exports = {
         '@': resolve('src')
       }
     }
+  },
+  devServer: {
+    disableHostCheck: true
   }
 }

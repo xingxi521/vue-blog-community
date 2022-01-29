@@ -1,8 +1,12 @@
 import axios from 'axios'
 import { notifiyError } from '@/utils/public'
+import configUrl from '@/config'
+// const CancelToken = axios.CancelToken
 class HttpRequest {
   constructor (baseUrl) {
     this.baseUrl = baseUrl
+    // 请求等待队列
+    this.pendding = {}
   }
 
   // 获取config配置
@@ -16,10 +20,27 @@ class HttpRequest {
     }
     return config
   }
-
+  // 移除请求等待队列数据
+  removePending(key, isRepeat) {
+    // 如果key存在证明已经发起了请求还没响应回来，因为响应回来会把key移除掉
+    if (this.pendding[key] && isRepeat) {
+      this.pendding[key]('取消重复的请求')
+    }
+    delete this.pendding[key]
+  }
   // 拦截器
   interceptors (instance) {
     instance.interceptors.request.use(config => {
+      // 请求的接口看是否开启mock状态
+      if (config.mock) {
+        config.baseURL = configUrl.baseUrl.mock
+      }
+      // const key = `${config.url}&${config.method}`
+      // this.removePending(key, true)
+      // config.cancelToken = new CancelToken((c) => {
+      //   // 可以key理解为setInternal的创建成功返回的句柄
+      //   this.pendding[key] = c
+      // })
       return config
     }, error => {
       return Promise.reject(error)
@@ -48,6 +69,8 @@ class HttpRequest {
       }
     }
     instance.interceptors.response.use(res => {
+      // const key = `${res.config.url}&${res.config.method}`
+      // this.removePending(key)
       if (res.status === 200) {
         return Promise.resolve(res.data)
       } else {
@@ -60,6 +83,7 @@ class HttpRequest {
         return Promise.reject(error)
       } else {
         notifiyError('服务器异常，请联系技术人员！')
+        return Promise.reject(error)
       }
     })
   }

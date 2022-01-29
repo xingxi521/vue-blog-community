@@ -6,20 +6,22 @@
     <div class="list-item-right">
       <div class="list-item-top">
         <div class="top-left">
-          <span class="item-tag">分享</span>
-          <span class="top-title">大前端课程中权限内容和实现方式？</span>
+          <span class="item-tag">{{ mappingType(item.type) }}</span>
+          <span class="top-title">{{ item.title }}</span>
         </div>
-        <div class="top-right">2</div>
+        <div class="top-right">
+          <span v-for="tag in item.tags" :key="`tag_${tag.title}`" :class="tag.className">精华</span>
+        </div>
       </div>
       <div class="list-item-bottom">
         <div class="bottom-left">
-          <a href="javascript:;">IT学习者</a>
-          <span class="left-time">2022-01-27</span>
-          <span class="left-fav"><i class="iconfont icon-kiss" />20</span>
+          <a href="javascript:;">{{ item.userInfo.nickName }}</a>
+          <span class="left-time">{{ item.createTime }}</span>
+          <span class="left-fav"><i class="iconfont icon-kiss" />{{ item.fav }}</span>
         </div>
         <div class="bottom-right">
           <i class="iconfont icon-pinglun1" />
-          6
+          {{ item.read }}
         </div>
       </div>
     </div>
@@ -30,8 +32,21 @@
 /**
  * 列表子项
  */
+import { ARTICLE_TYPE } from '@/utils/const/home'
 export default {
-  name: 'ListItem'
+  name: 'ListItem',
+  props: {
+    item: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  methods: {
+    // 映射文章类型
+    mappingType(value) {
+      return ARTICLE_TYPE.getDescFromValue(value)
+    }
+  }
 }
 </script>
 
