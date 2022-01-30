@@ -11,7 +11,7 @@
         <a :class="{'active-text': currentParams === 'essence'}" @click.prevent="barClickHandler('essence')">精华</a>
       </div>
       <div class="panel-left">
-        <a :class="{'active-text': currentSort === 'created'}" @click.prevent="sortClickHandler('created')">按最新</a>
+        <a :class="{'active-text': currentSort === 'createTime'}" @click.prevent="sortClickHandler('createTime')">按最新</a>
         <span class="line" />
         <a :class="{'active-text': currentSort === 'answer'}" @click.prevent="sortClickHandler('answer')">按热议</a>
       </div>
@@ -50,7 +50,7 @@ export default {
       // 主列表当前选中参数项
       currentParams: '',
       // 主列表当前搜索排序
-      currentSort: 'created',
+      currentSort: 'createTime',
       // 主列表文章数据
       contentListData: [],
       // 每页显示条数
@@ -102,7 +102,7 @@ export default {
         type: this.currentPage,
         status: this.currentParams === 'unClose' ? 0 : this.currentParams === 'close' ? 1 : '',
         isTop: 0,
-        tags: this.currentParams === 'essence' ? this.currentParams : '',
+        tags: this.currentParams === 'essence' ? '精华' : '',
         sort: this.currentSort,
         pageSize: this.pageSize,
         pageNum: this.pageNum

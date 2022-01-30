@@ -5,6 +5,6 @@ export function getArticleList (data) {
     url: '/public/list',
     method: 'post',
     data,
-    mock: true
+    // mock: true
   })
 }

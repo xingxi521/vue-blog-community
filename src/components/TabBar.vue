@@ -46,6 +46,10 @@ export default {
           value: 'ask'
         },
         {
+          title: '分享',
+          value: 'share'
+        },
+        {
           title: '讨论',
           value: 'disscussion'
         },

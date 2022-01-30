@@ -10,18 +10,18 @@
           <span class="top-title">{{ item.title }}</span>
         </div>
         <div class="top-right">
-          <span v-for="tag in item.tags" :key="`tag_${tag.title}`" :class="tag.className">精华</span>
+          <span v-for="tag in item.tags" :key="`tag_${tag.title}`" :class="tag.className">{{ tag.title }}</span>
         </div>
       </div>
       <div class="list-item-bottom">
         <div class="bottom-left">
           <a href="javascript:;">{{ item.userInfo.nickName }}</a>
-          <span class="left-time">{{ item.createTime }}</span>
+          <span class="left-time">{{ formatCreateTime(item.createTime) }}</span>
           <span class="left-fav"><i class="iconfont icon-kiss" />{{ item.fav }}</span>
         </div>
         <div class="bottom-right">
           <i class="iconfont icon-pinglun1" />
-          {{ item.read }}
+          {{ item.answer }}
         </div>
       </div>
     </div>
@@ -45,6 +45,17 @@ export default {
     // 映射文章类型
     mappingType(value) {
       return ARTICLE_TYPE.getDescFromValue(value)
+    },
+    // 格式化时间
+    formatCreateTime(value) {
+      const beforeSeven = this.dayjs().subtract(7, 'day').format('YYYY-MM-DD HH:mm:ss')
+      const createTime = this.dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+      console.log(beforeSeven, createTime)
+      if (createTime < beforeSeven) {
+        return this.dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+      } else {
+        return this.dayjs(value).fromNow()
+      }
     }
   }
 }
