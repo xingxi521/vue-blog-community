@@ -8,3 +8,13 @@ export function getArticleList (data) {
     // mock: true
   })
 }
+
+// 获取温馨通道、友情链接数据
+export function getLinkList (params) {
+  return axios.request({
+    url: '/public/linkList',
+    method: 'get',
+    params,
+    // mock: true
+  })
+}

@@ -32,7 +32,7 @@ class HttpRequest {
   interceptors (instance) {
     instance.interceptors.request.use(config => {
       // 请求的接口看是否开启mock状态
-      if (config.mock) {
+      if (config.mock || (configUrl.isMock && process.env.NODE_ENV === 'development')) {
         config.baseURL = configUrl.baseUrl.mock
       }
       // const key = `${config.url}&${config.method}`

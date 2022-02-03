@@ -3,10 +3,7 @@
     <h3 class="box-panel-title">温馨通道</h3>
     <div class="tips-box">
       <ul class="tips-box-ul">
-        <li><a href="">test</a></li>
-        <li><a href="">test</a></li>
-        <li><a href="">test</a></li>
-        <li><a href="">test</a></li>
+        <li v-for="item in listData" :key="item._id"><a :href="item.link" target="_blank">{{ item.title }}</a></li>
       </ul>
     </div>
   </div>
@@ -16,8 +13,28 @@
 /**
  * 温馨通道
  */
+import { getLinkList } from '@/api/public'
 export default {
-  name: 'Tips'
+  name: 'Tips',
+  data() {
+    return {
+      // 温馨通道数据
+      listData: []
+    }
+  },
+  mounted() {
+    this.getLinkListRequest()
+  },
+  methods: {
+    // 获取友情链接、温馨通道列表数据
+    getLinkListRequest() {
+      getLinkList({
+        type: 'tips'
+      }).then(res => {
+        this.listData = res.data
+      })
+    }
+  }
 }
 </script>
 

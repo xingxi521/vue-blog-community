@@ -34,7 +34,7 @@
                   忘记密码?
                 </a>
               </a-form-model-item>
-              <a-button type="primary" style="width:100%;" @click="loginHandler">立即登录</a-button>
+              <a-button type="primary" style="width:100%;margin-bottom: 20px;" @click="loginHandler">立即登录</a-button>
             </a-form-model>
           </a-col>
         </a-row>
@@ -70,7 +70,7 @@
                   </a-col>
                 </a-row>
               </a-form-model-item>
-              <a-button type="primary" style="width:100%;" @click="registerHandler">立即注册</a-button>
+              <a-button type="primary" style="width:100%;margin-bottom: 20px;" @click="registerHandler">立即注册</a-button>
             </a-form-model>
           </a-col>
         </a-row>
@@ -97,7 +97,7 @@
                   </a-col>
                 </a-row>
               </a-form-model-item>
-              <a-button type="primary" style="width:100%;" @click="forgetSubmit">提交</a-button>
+              <a-button type="primary" style="width:100%;margin-bottom: 20px;" @click="forgetSubmit">提交</a-button>
             </a-form-model>
           </a-col>
         </a-row>
@@ -113,7 +113,6 @@ export default {
   name: '',
   data () {
     const checkPass = (rule, value, callback) => {
-      console.log(this.formData.dbpassWord, value)
       if (value === '') {
         callback(new Error('请输入确认密码'))
       } else if (value !== this.formData.passWord) {
@@ -253,6 +252,7 @@ export default {
 </script>
 <style lang="scss" scoped>
   .app-container{
+    background: #fff;
     ::v-deep{
       .ant-input-group-addon{
         width: 80px;

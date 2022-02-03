@@ -7,7 +7,7 @@
           <!-- 置顶 -->
           <Stick v-if="currentPage === 'index'" />
           <!-- 主列表 -->
-          <Content :current-page="currentPage" />
+          <Content ref="content" :current-page="currentPage" />
         </a-col>
         <a-col :md="8">
           <Tips v-if="currentPage === 'index'" />
@@ -44,9 +44,10 @@ export default {
     menuClickHandler(value) {
       if (this.currentPage === value) return
       this.currentPage = value
-      this.currentParams = ''
-      this.currentSort = 'created'
       // 发送网络请求
+      this.$nextTick(() => {
+        this.$refs.content.reSetData()
+      })
     }
   }
 }

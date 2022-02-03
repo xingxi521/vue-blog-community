@@ -15,7 +15,7 @@
       </div>
       <div class="list-item-bottom">
         <div class="bottom-left">
-          <a href="javascript:;">{{ item.userInfo.nickName }}</a>
+          <a href="javascript:;">{{ item.userInfo.nickName }}<span v-if="item.userInfo.vip === 1" class="left-vip badge-red">VIP</span></a>
           <span class="left-time">{{ formatCreateTime(item.createTime) }}</span>
           <span class="left-fav"><i class="iconfont icon-kiss" />{{ item.fav }}</span>
         </div>
@@ -50,7 +50,6 @@ export default {
     formatCreateTime(value) {
       const beforeSeven = this.dayjs().subtract(7, 'day').format('YYYY-MM-DD HH:mm:ss')
       const createTime = this.dayjs(value).format('YYYY-MM-DD HH:mm:ss')
-      console.log(beforeSeven, createTime)
       if (createTime < beforeSeven) {
         return this.dayjs(value).format('YYYY-MM-DD HH:mm:ss')
       } else {
@@ -110,6 +109,9 @@ export default {
         }
         .left-time{
           color: $text-color-grey;
+        }
+        .left-vip{
+          padding: 0 6px;
         }
         .left-fav{
           color: #ff5722;
