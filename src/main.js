@@ -5,6 +5,7 @@ import router from './router'
 import store from './store'
 import './plugins/antd'
 import './utils/public'
+import stroage from './utils/stroage'
 import './assets/font/iconfont.css'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
@@ -13,6 +14,7 @@ dayjs.extend(relativeTime)
 dayjs.locale('zh-cn')
 Vue.prototype.dayjs = dayjs
 Vue.config.productionTip = false
+Vue.prototype.$stroage = stroage
 new Vue({
   router,
   store,

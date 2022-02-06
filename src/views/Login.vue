@@ -161,7 +161,7 @@ export default {
     this.getCaptchRequest()
   },
   methods: {
-    ...mapMutations(['SET_UID']),
+    ...mapMutations(['SET_UID', 'SET_USERINFO', 'SET_LOGIN']),
     // 获取验证码
     getCaptchRequest () {
       const uid = this.uid || localStorage.getItem('uid') || uuidv4()
@@ -217,7 +217,11 @@ export default {
             captcha: this.formData.captcha,
             uid
           }).then(res => {
-            console.log(res)
+            this.SET_USERINFO(res.data.userInfo)
+            this.SET_LOGIN(true)
+            this.$stroage.setItem('userInfo', res.data.userInfo)
+            this.$stroage.setItem('isLogin', true)
+            this.$router.push({ name: 'Home' })
           })
         } else {
           this.notifiyError('请先填写好数据再进行提交！')

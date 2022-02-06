@@ -15,9 +15,41 @@
       <!-- 右边导航 -->
       <div class="header-right">
         <ul class="header-nav">
-          <li class="header-nav-item"><a class="avatar app-hide-xs" href="javascript:;"><i class="iconfont icon-touxiang" /></a></li>
-          <li class="header-nav-item"><router-link class="login" to="/login">登录</router-link></li>
-          <li class="header-nav-item"><a class="register" href="javascript:;">注册</a></li>
+          <template v-if="!isLogin">
+            <li class="header-nav-item"><a class="avatar app-hide-xs" href="javascript:;"><i class="iconfont icon-touxiang" /></a></li>
+            <li class="header-nav-item"><router-link class="login" to="/login">登录</router-link></li>
+            <li class="header-nav-item"><router-link class="login" to="/login">注册</router-link></li>
+          </template>
+          <template v-else>
+            <li class="header-nav-item">
+              <!--  -->
+              <a-dropdown>
+                <router-link to="/center" class="avatar" href="javascript:;">
+                  <img class="login-avatar" src="../assets/avr.png" alt="">
+                  {{ userInfo.nickName }}
+                </router-link>
+                <a-menu slot="overlay" @click="onClickMenu">
+                  <a-menu-item key="info" disabled>
+                    欢迎用户：{{ userInfo.nickName }}
+                  </a-menu-item>
+                  <a-menu-divider />
+                  <a-menu-item key="baseInfo">
+                    <a href="javascript:;"><a-icon type="database" />基本信息</a>
+                  </a-menu-item>
+                  <a-menu-item key="message">
+                    <a href="javascript:;"><a-icon type="message" />我的消息</a>
+                  </a-menu-item>
+                  <a-menu-item key="my">
+                    <a href="javascript:;"><a-icon type="home" />我的主页</a>
+                  </a-menu-item>
+                  <a-menu-divider />
+                  <a-menu-item key="logout">
+                    <a href="javascript:;">安全退出</a>
+                  </a-menu-item>
+                </a-menu>
+              </a-dropdown>
+            </li>
+          </template>
         </ul>
       </div>
     </div>
@@ -25,8 +57,32 @@
 </template>
 
 <script>
+/**
+ * 头部导航组件
+ */
+import { mapState, mapMutations } from 'vuex'
 export default {
+  name: 'Header',
+  computed: {
+    ...mapState(['isLogin', 'userInfo'])
+  },
+  methods: {
+    ...mapMutations(['SET_USERINFO', 'SET_LOGIN']),
+    onClickMenu({ key }) {
+      if (key === 'database') { // 基本信息
 
+      } else if (key === 'message') { // 我的消息
+
+      } else if (key === 'home') { // 我的主页
+
+      } else if (key === 'logout') { // 安全退出
+        this.SET_USERINFO({})
+        this.SET_LOGIN(false)
+        this.$stroage.clearItem('userInfo')
+        this.$stroage.clearItem('isLogin')
+      }
+    }
+  }
 }
 </script>
 
@@ -37,7 +93,7 @@ export default {
   height: 60px;
   position: fixed;
   left: 0;
-  top: 0;
+  top: 1px;
   border-bottom: 1px solid #404553;
   border-right: 1px solid #404553;
   border-radius: 0;
@@ -59,6 +115,12 @@ export default {
           .avatar{
             i{
               font-size: 32px;
+            }
+            .login-avatar{
+              width: 36px;
+              height: 36px;
+              margin: 0 10px;
+              border-radius: 100%;
             }
           }
         }
@@ -96,4 +158,20 @@ export default {
     }
   }
 }
+</style>
+<style lang="scss">
+  .ant-dropdown-menu-item{
+    i{
+      margin-right: 10px;
+    }
+  }
+  .ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover{
+    background-color: #009688;
+    a{
+      color: #fff;
+    }
+  }
+  .ant-dropdown-menu-item-disabled:hover, .ant-dropdown-menu-submenu-title-disabled:hover{
+    background: #fff;
+  }
 </style>
