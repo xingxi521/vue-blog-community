@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { notifiyError } from '@/utils/public'
 import configUrl from '@/config'
+import store from '@/store'
 // const CancelToken = axios.CancelToken
 class HttpRequest {
   constructor (baseUrl) {
@@ -14,7 +15,8 @@ class HttpRequest {
     const config = {
       baseURL: this.baseUrl,
       headers: {
-        'Content-Type': 'application/json;charset=utf-8'
+        'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': 'bearer ' + store.state.token || ''
       },
       timeout: 10000
     }

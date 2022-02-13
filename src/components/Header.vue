@@ -67,10 +67,10 @@ export default {
     ...mapState(['isLogin', 'userInfo'])
   },
   methods: {
-    ...mapMutations(['SET_USERINFO', 'SET_LOGIN']),
+    ...mapMutations(['SET_USERINFO', 'SET_LOGIN', 'SET_TOKEN']),
     onClickMenu({ key }) {
-      if (key === 'database') { // 基本信息
-
+      if (key === 'baseInfo') { // 基本信息
+        this.$router.push({ name: 'UserCenter' })
       } else if (key === 'message') { // 我的消息
 
       } else if (key === 'home') { // 我的主页
@@ -78,8 +78,8 @@ export default {
       } else if (key === 'logout') { // 安全退出
         this.SET_USERINFO({})
         this.SET_LOGIN(false)
-        this.$stroage.clearItem('userInfo')
-        this.$stroage.clearItem('isLogin')
+        this.SET_TOKEN('')
+        this.$router.push({ name: 'Home' })
       }
     }
   }

@@ -161,7 +161,7 @@ export default {
     this.getCaptchRequest()
   },
   methods: {
-    ...mapMutations(['SET_UID', 'SET_USERINFO', 'SET_LOGIN']),
+    ...mapMutations(['SET_UID', 'SET_USERINFO', 'SET_LOGIN', 'SET_TOKEN']),
     // 获取验证码
     getCaptchRequest () {
       const uid = this.uid || localStorage.getItem('uid') || uuidv4()
@@ -219,8 +219,7 @@ export default {
           }).then(res => {
             this.SET_USERINFO(res.data.userInfo)
             this.SET_LOGIN(true)
-            this.$stroage.setItem('userInfo', res.data.userInfo)
-            this.$stroage.setItem('isLogin', true)
+            this.SET_TOKEN(res.data.token)
             this.$router.push({ name: 'Home' })
           })
         } else {

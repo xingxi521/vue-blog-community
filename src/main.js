@@ -10,8 +10,10 @@ import './assets/font/iconfont.css'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import Pop from '@/components/Custom/Pop'
 dayjs.extend(relativeTime)
 dayjs.locale('zh-cn')
+Vue.use(Pop)
 Vue.prototype.dayjs = dayjs
 Vue.config.productionTip = false
 Vue.prototype.$stroage = stroage
