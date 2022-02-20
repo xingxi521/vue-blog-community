@@ -39,7 +39,7 @@
           <input id="pic" type="file" name="file" accept="image/png, image/gif, image/jpg" @change="uploadFileHandler">
           <p class="tips">建议尺寸168*168，支持jpg、png、gif，最大不能超过50KB</p>
           <div class="showpic">
-            <img :src="env === 'development' ? config.baseUrl.dev + userInfo.pic : config.baseUrl.prod + 'app/public' + userInfo.pic" alt="">
+            <img :src="env === 'development' ? config.baseUrl.dev + userInfo.pic : config.baseUrl.prod + 'app/public/' + userInfo.pic" alt="">
           </div>
         </div>
       </a-tab-pane>
