@@ -25,7 +25,7 @@
               <!--  -->
               <a-dropdown>
                 <router-link to="/center" class="avatar" href="javascript:;">
-                  <img class="login-avatar" src="../assets/avr.png" alt="">
+                  <img class="login-avatar" :src="env === 'development' ? config.baseUrl.dev + userInfo.pic : config.baseUrl.prod + userInfo.pic" alt="">
                   {{ userInfo.nickName }}
                 </router-link>
                 <a-menu slot="overlay" @click="onClickMenu">
@@ -61,8 +61,15 @@
  * 头部导航组件
  */
 import { mapState, mapMutations } from 'vuex'
+import config from '@/config'
 export default {
   name: 'Header',
+  data() {
+    return {
+      config,
+      env: process.env.NODE_ENV
+    }
+  },
   computed: {
     ...mapState(['isLogin', 'userInfo'])
   },

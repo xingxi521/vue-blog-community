@@ -18,3 +18,15 @@ export function getLinkList (params) {
     // mock: true
   })
 }
+
+// 上传文件
+export function uploadFile (data) {
+  return axios.request({
+    url: '/content/uploadFile',
+    Headers: {
+      "Content-Type": 'application/x-www-form-urlencode'
+    },
+    method: 'post',
+    data
+  })
+}

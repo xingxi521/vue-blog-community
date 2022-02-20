@@ -14,3 +14,29 @@ export function sign () {
     method: 'get'
   })
 }
+
+// 更新用户信息
+export function updateUserInfo (data) {
+  return axios.request({
+    url: '/user/updateInfo',
+    method: 'post',
+    data
+  })
+}
+
+// 获取用户信息
+export function getUserInfo () {
+  return axios.request({
+    url: '/user/getUserInfo',
+    method: 'get'
+  })
+}
+
+// 修改密码
+export function updatePassWord (data) {
+  return axios.request({
+    url: '/user/updatePassWord',
+    method: 'post',
+    data
+  })
+}

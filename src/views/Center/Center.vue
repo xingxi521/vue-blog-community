@@ -3,7 +3,6 @@
     <div class="center-left app-hide-xs">
       <a-menu
         v-model="selectedKeys"
-        :default-selected-keys="['user']"
         mode="inline"
         theme="dark"
         @click="menuClickHandler"
@@ -44,19 +43,23 @@ export default {
   name: 'Center',
   data() {
     return {
-      selectedKeys: ['user']
+      selectedKeys: []
     }
+  },
+  mounted() {
+    this.selectedKeys = this.$stroage.getItem('currentCenter') || ['user']
   },
   methods: {
     menuClickHandler({ key }) {
       if (this.selectedKeys[0] === key) return
       this.selectedKeys = [key]
+      this.$stroage.setItem('currentCenter', [key])
       if (key === 'user') {
-        this.$router.push({ name: 'UserCenter' })
+        this.$router.push({ name: 'UserCenter' }, () => {})
       } else if (key === 'setting') {
-        this.$router.push({ name: 'Base' })
+        this.$router.push({ name: 'Base' }, () => {})
       } else if (key === 'post') {
-        this.$router.push({ name: 'MyPost' })
+        this.$router.push({ name: 'MyPost' }, () => {})
       }
     },
     setSelectKeys(value) {
