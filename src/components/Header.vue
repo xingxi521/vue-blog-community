@@ -25,7 +25,7 @@
               <!--  -->
               <a-dropdown>
                 <router-link to="/center" class="avatar" href="javascript:;">
-                  <img class="login-avatar" :src="env === 'development' ? config.baseUrl.dev + userInfo.pic : config.baseUrl.prod + userInfo.pic" alt="">
+                  <img class="login-avatar" :src="env === 'development' ? config.baseUrl.dev + userInfo.pic : config.baseUrl.prod + 'app/public' + userInfo.pic" alt="">
                   {{ userInfo.nickName }}
                 </router-link>
                 <a-menu slot="overlay" @click="onClickMenu">
