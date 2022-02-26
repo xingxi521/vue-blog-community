@@ -7,14 +7,14 @@
         <li v-if="isLogin"><a href="">我发表的贴</a></li>
         <li v-if="isLogin"><a href="">我收藏的贴</a></li>
         <li class="app-hide-sm">
-          <a-button type="primary">
+          <a-button type="primary" @click="createPostHandler">
             发表新帖
           </a-button>
         </li>
       </ul>
       <div class="bar-right app-hide-xs">
         <a-icon type="search" class="search-ico" />
-        <a-button type="primary">
+        <a-button type="primary" @click="createPostHandler">
           发表新帖
         </a-button>
       </div>
@@ -75,6 +75,14 @@ export default {
     // 点击菜单事件
     clickMenuHandler(value) {
       this.$emit('onClick', value)
+    },
+    // 发表新帖按钮事件
+    createPostHandler() {
+      if (!this.isLogin) {
+        this.$pop('shake', '请先登录')
+        return
+      }
+      this.$router.push({ name: 'Post' })
     }
   }
 }

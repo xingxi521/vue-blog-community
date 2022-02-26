@@ -2,6 +2,7 @@ import axios from 'axios'
 import { notifiyError } from '@/utils/public'
 import configUrl from '@/config'
 import store from '@/store'
+import router from '@/router'
 // const CancelToken = axios.CancelToken
 class HttpRequest {
   constructor (baseUrl) {
@@ -55,6 +56,10 @@ class HttpRequest {
           break
         case 401:
           notifiyError('客户端未授权该请求。缺乏有效的身份认证凭证')
+          router.push({ name: 'Login' })
+          store.commit('SET_USERINFO', {})
+          store.commit('SET_LOGIN', false)
+          store.commit('SET_TOKEN', '')
           break
         case 403:
           notifiyError('服务器拒绝响应。权限不足')

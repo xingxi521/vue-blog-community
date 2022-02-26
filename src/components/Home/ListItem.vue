@@ -1,7 +1,7 @@
 <template>
   <div class="list-item-main">
     <div class="list-item-left">
-      <img src="../../assets/avr.png" alt="">
+      <img :src="env === 'development' ? config.baseUrl.dev + item.userInfo.pic : config.baseUrl.prod + item.userInfo.pic" alt="">
     </div>
     <div class="list-item-right">
       <div class="list-item-top">
@@ -33,12 +33,19 @@
  * 列表子项
  */
 import { ARTICLE_TYPE } from '@/utils/const/home'
+import config from '@/config'
 export default {
   name: 'ListItem',
   props: {
     item: {
       type: Object,
       default: () => {}
+    }
+  },
+  data() {
+    return {
+      config,
+      env: process.env.NODE_ENV
     }
   },
   methods: {

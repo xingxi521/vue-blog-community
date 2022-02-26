@@ -40,3 +40,12 @@ export function updatePassWord (data) {
     data
   })
 }
+
+// 重置密码
+export function reSetPassWord (data) {
+  return axios.request({
+    url: '/public/reset',
+    method: 'post',
+    data
+  })
+}

@@ -192,11 +192,13 @@ export default {
     },
     // 忘记密码提交按钮事件
     forgetSubmit () {
+      const uid = this.uid || localStorage.getItem('uid')
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           forgetPassword({
             userName: this.formData.userName,
-            captcha: this.formData.captcha
+            captcha: this.formData.captcha,
+            uid
           }).then(res => {
             this.notifiySuccess(res.msg)
           })

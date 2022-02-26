@@ -18,6 +18,11 @@ const routes = [
     component: () => import('@/views/Login.vue')
   },
   {
+    path: '/reset',
+    name: 'ReSetPassWord',
+    component: () => import('@/views/ReSetPassWord.vue')
+  },
+  {
     path: '/center',
     name: 'Center',
     component: () => import('@/views/Center/Center.vue'),
@@ -42,6 +47,11 @@ const routes = [
         component: () => import('@/views/Center/MyPost.vue')
       }
     ]
+  },
+  {
+    path: '/post',
+    name: 'Post',
+    component: () => import('@/views/Post/Post.vue')
   }
 ]
 

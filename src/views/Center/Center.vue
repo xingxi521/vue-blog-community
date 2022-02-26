@@ -49,6 +49,9 @@ export default {
   mounted() {
     this.selectedKeys = this.$stroage.getItem('currentCenter') || ['user']
   },
+  destroyed() {
+    this.selectedKeys = this.$stroage.setItem('currentCenter', ['user'])
+  },
   methods: {
     menuClickHandler({ key }) {
       if (this.selectedKeys[0] === key) return
