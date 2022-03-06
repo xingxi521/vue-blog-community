@@ -127,7 +127,7 @@ a{
   vertical-align: middle;
   background-color: #e2e2e2;
 }
-.badge-orange{
+.badge{
   margin-left: 5px;
   border-radius: 2px;
   font-size: 12px;
@@ -137,34 +137,25 @@ a{
   display: inline-block;
   padding: 0 6px;
   text-align: center;
-  background-color: #FFB800;
   color: #fff;
+}
+.badge-orange{
+  background-color: #FFB800;
 }
 .badge-red{
-  margin-left: 5px;
-  border-radius: 2px;
-  font-size: 12px;
-  height: 20px;
-  line-height: 20px;
-  position: relative;
-  display: inline-block;
-  padding: 0 6px;
-  text-align: center;
   background-color: #FF5722;
-  color: #fff;
 }
 .badge-blue{
-  margin-left: 5px;
-  border-radius: 2px;
-  font-size: 12px;
-  height: 20px;
-  line-height: 20px;
-  position: relative;
-  display: inline-block;
-  padding: 0 6px;
-  text-align: center;
   background-color: #1E9FFF;
-  color: #fff;
+}
+.badge-green{
+  background-color: #009688;
+}
+.badge-grey{
+  background-color: rgb(153, 153, 153);
+}
+.badge-black{
+  background-color: #393D49;
 }
 .active-text{
   color: #009688 !important;

@@ -7,7 +7,7 @@
  * @FilePath: \dnf-gatewaye:\慕课网大前端\community\src\utils\public.js
  */
 import Vue from 'vue'
-
+import dayjs from 'dayjs'
 import { notification } from 'ant-design-vue'
 /**
  * 成功提示
@@ -103,6 +103,16 @@ export function createEnum(definition) {
       })
       return result || []
     }
+  }
+}
+// 格式化时间
+export function formatCreateTime(value) {
+  const beforeSeven = dayjs().subtract(7, 'day').format('YYYY-MM-DD HH:mm:ss')
+  const createTime = dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+  if (createTime < beforeSeven) {
+    return dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+  } else {
+    return dayjs(value).fromNow()
   }
 }
 Vue.prototype.notifiyError = notifiyError

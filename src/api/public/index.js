@@ -9,6 +9,16 @@ export function getArticleList (data) {
   })
 }
 
+// 获取文章详情数据
+export function getPostDetails (params) {
+  return axios.request({
+    url: '/public/postDetails',
+    method: 'get',
+    params,
+    // mock: true
+  })
+}
+
 // 获取温馨通道、友情链接数据
 export function getLinkList (params) {
   return axios.request({

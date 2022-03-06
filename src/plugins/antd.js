@@ -46,10 +46,11 @@ import {
   notification,
   Empty,
   Tree,
-  TreeSelect
+  TreeSelect,
+  Pagination
 } from 'ant-design-vue'
-
 Vue.use(ConfigProvider)
+Vue.use(Pagination)
 Vue.use(Layout)
 Vue.use(Input)
 Vue.use(InputNumber)

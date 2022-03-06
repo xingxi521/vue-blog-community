@@ -7,10 +7,10 @@
       <div class="list-item-top">
         <div class="top-left">
           <span class="item-tag">{{ mappingType(item.type) }}</span>
-          <span class="top-title">{{ item.title }}</span>
+          <span class="top-title" @click="jumpToDetails(item)">{{ item.title }}</span>
         </div>
         <div class="top-right">
-          <span v-for="tag in item.tags" :key="`tag_${tag.title}`" :class="tag.className">{{ tag.title }}</span>
+          <span v-for="tag in item.tags" :key="`tag_${tag.title}`" class="badge" :class="tag.className">{{ tag.title }}</span>
         </div>
       </div>
       <div class="list-item-bottom">
@@ -62,6 +62,10 @@ export default {
       } else {
         return this.dayjs(value).fromNow()
       }
+    },
+    // 跳转到文章详情
+    jumpToDetails(item) {
+      this.$router.push({ name: 'PostDetails', params: { id: item._id }})
     }
   }
 }
