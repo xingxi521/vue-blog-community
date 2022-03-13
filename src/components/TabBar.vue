@@ -4,8 +4,8 @@
       <ul class="bar-ul">
         <li v-for="item in menuList" :key="item.value"><a href="" :class="{ 'active-text' : currentPage === item.value }" @click.prevent="clickMenuHandler(item.value)">{{ item.title }}</a></li>
         <li v-if="isLogin"><span class="line" /></li>
-        <li v-if="isLogin"><a href="">我发表的贴</a></li>
-        <li v-if="isLogin"><a href="">我收藏的贴</a></li>
+        <li v-if="isLogin"><router-link :to="{ name: 'MyPost', query: {type: 'myPost'} }">我发表的贴</router-link></li>
+        <li v-if="isLogin"><router-link :to="{ name: 'MyPost', query: {type: 'myCollect'} }">我收藏的贴</router-link></li>
         <li class="app-hide-sm">
           <a-button type="primary" @click="createPostHandler">
             发表新帖

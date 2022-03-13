@@ -17,7 +17,7 @@ class HttpRequest {
       baseURL: this.baseUrl,
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        'Authorization': 'bearer ' + store.state.token || ''
+        'Authorization': store.state.token ? 'bearer ' + store.state.token : ''
       },
       timeout: 10000
     }

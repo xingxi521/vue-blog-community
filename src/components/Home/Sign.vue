@@ -95,6 +95,7 @@ export default {
       }
       sign().then(res => {
         this.count = res.data.count
+        this.$pop('shake', res.msg)
         this.getIsSignRequest()
       })
     }

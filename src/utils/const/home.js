@@ -8,3 +8,9 @@ export const ARTICLE_TYPE = createEnum({
   NOTICE: ['notice', '公告'],
   DYNMATIC: ['dynamic', '动态']
 })
+
+// 文章是否完结
+export const END_TYPE = createEnum({
+  OPEN: [0, '未结'],
+  CLOSE: [1, '已结']
+})

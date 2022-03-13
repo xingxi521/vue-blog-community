@@ -7,3 +7,29 @@ export function createPost (data) {
     data
   })
 }
+// 编辑帖子
+export function editPost (data) {
+  return axios.request({
+    url: '/content/editPost',
+    method: 'post',
+    data
+  })
+}
+
+// 收藏帖子
+export function collectPost (data) {
+  return axios.request({
+    url: '/collect/collectPost',
+    method: 'post',
+    data
+  })
+}
+
+// 删除帖子
+export function deletePost (data) {
+  return axios.request({
+    url: '/content/delPost',
+    method: 'post',
+    data
+  })
+}

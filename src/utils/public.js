@@ -8,7 +8,7 @@
  */
 import Vue from 'vue'
 import dayjs from 'dayjs'
-import { notification } from 'ant-design-vue'
+import { notification, Modal } from 'ant-design-vue'
 /**
  * 成功提示
  * @param {(string)} message
@@ -57,6 +57,28 @@ export const notifiyError = function (message, isHtml, title, duration) {
     }) : message || 'Error',
     duration: duration || 3
   })
+}
+
+/**
+ * 确认对话框
+ * @param {(string)} message
+ * @param {(Object)} opt
+ */
+export const confirmBox = async function(content, okCallBack, cancelCallBack, opt = {}) {
+  const option = Object.assign({
+    title: '提示',
+    content: content || '消息',
+    showCancelButton: true,
+    okText: '确定',
+    cancelText: '取消',
+    onOk() {
+      okCallBack()
+    },
+    onCancel() {
+      cancelCallBack()
+    }
+  }, opt)
+  return Modal.confirm(option)
 }
 
 /**
@@ -115,6 +137,75 @@ export function formatCreateTime(value) {
     return dayjs(value).fromNow()
   }
 }
+
+const getElememtY = (elem) => {
+  // 这里取app是因为滚动条是出现在app上的，不能直接取window.pageXoffet
+  return document.getElementById('app').scrollTop + document.querySelector(elem).getBoundingClientRect().top
+}
+
+/**
+ * 滚动到指定的元素
+ * @param {String} elem DOM元素
+ * @param {Number} duration 滚动动画执行的时间
+ * @param {Number} offset 滚动偏移量
+ */
+export function scrollToElem (elem, duration, offset) {
+  // 获取滚动条当前位置
+  const startingY = document.getElementById('app').scrollTop
+  // 获取目标Dom元素的位置
+  const elementY = getElememtY(elem)
+  // 计算出需要滚动的距离
+  const diff = elementY - startingY + offset
+  // 如果 diff 0
+  if (!diff) return
+  const easing = t => t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1
+  let start
+  window.requestAnimationFrame(function step (timestamp) {
+    if (!start) start = timestamp
+    // 计算时间的差值，根据差值计算偏移量
+    const time = timestamp - start
+    let percent = Math.min(time / duration, 1)
+    percent = easing(percent)
+    document.getElementById('app').scrollTo(0, startingY + diff * percent)
+
+    if (time < duration) {
+      window.requestAnimationFrame(step)
+    }
+  })
+}
+
+// 从数组对象里根据key取出匹配的对象
+export function getObjByAttr (lst, originKey, originVal, isString) {
+  if (!Array.isArray(lst)) {
+    return null
+  }
+  var result = null
+  for (const value of lst) {
+    if (value[originKey] === originVal) {
+      result = value
+      break
+    }
+  }
+  return result
+}
+// 数组对象里根据key和value匹配取出指定key值
+export function getAttrByAttr(lst, originKey, originVal, targetKey, defaultValue) {
+  if (!Array.isArray(lst)) {
+    return ''
+  }
+  var result = '未知' + originKey + ':' + originVal
+  if (defaultValue !== undefined) {
+    result = defaultValue
+  }
+  for (const value of lst) {
+    if (value[originKey] === originVal) {
+      result = value[targetKey]
+      break
+    }
+  }
+  return result
+}
 Vue.prototype.notifiyError = notifiyError
 Vue.prototype.notifiyWarning = notifiyWarning
 Vue.prototype.notifiySuccess = notifiySuccess
+Vue.prototype.confirmBox = confirmBox

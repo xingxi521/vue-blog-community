@@ -1,6 +1,6 @@
 <template>
   <div class="box-panel">
-    <h1 class="detail-title">Imooc社区，基于 layui 的极简社区页面模版</h1>
+    <h1 class="detail-title">{{ content.title }}</h1>
     <div class="detail-info">
       <div class="detail-info-left">
         <span class="badge badge-green">{{ mappingType[content.type] }}</span>
@@ -31,8 +31,15 @@
         <div class="userinfo-right-bottom">
           <span class="bottom-xuan">悬赏：{{ content.fav }}积分</span>
           <div class="btn-group">
-            <a-button v-if="(content && content.userInfo && userInfo._id === content.userInfo._id) || (content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN)" type="primary" size="small" class="bottom-editpost">编辑帖子</a-button>
-            <a-button type="primary" size="small" class="bottom-editpost">收藏</a-button>
+            <a-button
+              v-if="(content && content.userInfo && userInfo._id === content.userInfo._id && content.isEnd !== 1) || (content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN && content.isEnd !== 1)"
+              type="primary"
+              size="small"
+              class="bottom-editpost"
+              @click="editPostHandler()"
+            >编辑帖子
+            </a-button>
+            <a-button type="primary" size="small" class="bottom-editpost" @click="collectHandler">{{ content.isCollect ? '取消收藏' : '收藏' }}</a-button>
           </div>
         </div>
       </div>
@@ -51,6 +58,7 @@
 import { mapState } from 'vuex'
 import { ROLE_TYPE } from '@/utils/const/publlic'
 import { formatCreateTime } from '@/utils/public'
+import { collectPost } from '@/api/post'
 import config from '@/config'
 export default {
   name: 'PostContent',
@@ -78,11 +86,39 @@ export default {
     }
   },
   computed: {
-    ...mapState(['userInfo'])
+    ...mapState(['userInfo', 'isLogin'])
   },
   methods: {
     formatCreateTime(time) {
       return formatCreateTime(time)
+    },
+    // 编辑帖子按钮事件
+    editPostHandler() {
+      if (!this.isLogin) {
+        this.$pop('shake', '请先登录')
+      } else if (this.content.isEnd === 1) { // 结贴
+        this.$pop('shake', '帖子已结贴，无法再进行编辑！')
+      } else {
+        this.$router.push({
+          name: 'EditPost',
+          params: {
+            id: this.content._id
+          }
+        })
+      }
+    },
+    // 收藏帖子按钮事件
+    collectHandler() {
+      if (!this.isLogin) {
+        this.$pop('shake', '请先登录')
+      } else {
+        collectPost({
+          tid: this.content._id
+        }).then(res => {
+          this.$pop('shake', res.msg)
+          this.content.isCollect = !this.content.isCollect
+        })
+      }
     }
   }
 }

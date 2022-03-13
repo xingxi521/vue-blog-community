@@ -49,3 +49,21 @@ export function reSetPassWord (data) {
     data
   })
 }
+
+// 获取用户收藏帖子的数据
+export function getCollectPost (data) {
+  return axios.request({
+    url: '/collect/getCollectPost',
+    method: 'post',
+    data
+  })
+}
+
+// 获取用户发表过的帖子
+export function getSendPost (data) {
+  return axios.request({
+    url: '/user/getSendPost',
+    method: 'post',
+    data
+  })
+}

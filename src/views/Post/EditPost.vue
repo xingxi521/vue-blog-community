@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <div class="post-title">发表新帖</div>
+    <div class="post-title">编辑帖子</div>
     <a-form-model
       ref="form"
       :model="formData"
@@ -9,7 +9,7 @@
       <a-row style="margin-top:15px;">
         <a-col :span="4">
           <a-form-model-item has-feedback label="" prop="type">
-            <a-select v-model="formData.type" placeholder="请选择分类" allow-clear>
+            <a-select v-model="formData.type" placeholder="请选择分类" allow-clear disabled>
               <a-select-option v-for="item in typeOptions" :key="item.value" :value="item.value">
                 {{ item.label }}
               </a-select-option>
@@ -24,7 +24,7 @@
       </a-row>
       <div id="editor" />
       <a-form-model-item has-feedback label="" prop="fav">
-        <a-input v-model="formData.fav" addon-before="悬赏积分" autocomplete="off" placeholder="请输入悬赏积分" />
+        <a-input v-model="formData.fav" addon-before="悬赏积分" autocomplete="off" placeholder="请输入悬赏积分" disabled />
       </a-form-model-item>
       <a-form-model-item has-feedback label="" prop="captcha">
         <a-row>
@@ -36,24 +36,25 @@
           </a-col>
         </a-row>
       </a-form-model-item>
-      <a-button type="primary" style="width:100%;margin-bottom: 20px;" @click="submitHandler">发表新帖</a-button>
+      <a-button type="primary" style="width:100%;margin-bottom: 20px;" @click="submitHandler">提交编辑</a-button>
     </a-form-model>
   </div>
 </template>
 
 <script>
 /**
- * 发表新帖
+ * 编辑帖子
  */
 import E from 'wangeditor'
 import { getCaptch } from '@/api/login'
 import { v4 as uuidv4 } from 'uuid'
 import { mapMutations } from 'vuex'
 import config from '@/config/index'
-import { createPost } from '@/api/post'
+import { editPost } from '@/api/post'
+import { getPostDetails } from '@/api/public'
 import { ARTICLE_TYPE } from '@/utils/const/home'
 export default {
-  name: 'Post',
+  name: 'EditPost',
   data() {
     return {
       // 提交表单
@@ -68,8 +69,7 @@ export default {
           { required: true, message: '请选择分类', trigger: 'change' }
         ],
         fav: [
-          { required: true, message: '请输入悬赏积分', trigger: 'blur' },
-          { pattern: '^\\d+$', message: '请输入正整数', trigger: 'change' }
+          { required: true, message: '请输入悬赏积分', trigger: 'blur' }
         ],
         captcha: [
           { required: true, message: '请输入验证码' }
@@ -83,10 +83,21 @@ export default {
     }
   },
   mounted() {
-    this.initEditor()
-    this.getCaptchRequest()
+    this.initData()
   },
   methods: {
+    async initData() {
+      await this.getPostDetails()
+      this.initEditor()
+      this.getCaptchRequest()
+    },
+    // 获取文章详情
+    async getPostDetails() {
+      const res = await getPostDetails({
+        tid: this.$route.params.id
+      })
+      this.formData = res.data
+    },
     ...mapMutations(['SET_UID']),
     // 初始化编辑器
     initEditor() {
@@ -104,6 +115,7 @@ export default {
         }
       }
       this.editor.create()
+      this.editor.txt.html(this.formData.content)
     },
     // 获取验证码
     getCaptchRequest () {
@@ -128,13 +140,15 @@ export default {
             this.notifiyWarning('请输入正文内容！')
             return
           }
-          createPost({
+          editPost({
             ...this.formData,
             content: html,
             uid
           }).then(res => {
             this.notifiySuccess(res.msg)
-            this.$router.push({ name: 'Home' })
+            this.$router.push({ name: 'PostDetails', params: {
+              id: this.$route.params.id
+            }})
           }).catch(error => {
             console.log(error)
           })

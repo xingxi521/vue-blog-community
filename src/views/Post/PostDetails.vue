@@ -7,7 +7,7 @@
           <!-- 文章详情主内容 -->
           <PostContent :content="postData" />
           <!-- 回贴模块 -->
-          <PostComment />
+          <PostComment :post-data="postData" />
         </a-col>
         <a-col :md="8">
           <Tips />
