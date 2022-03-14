@@ -113,8 +113,10 @@ export default {
             pic: this.userInfo.pic,
             role: this.userInfo.role,
             nickName: this.userInfo.nickName,
-            vip: this.userInfo.vip
+            vip: this.userInfo.vip,
+            _id: this.userInfo._id
           }
+          result.children = []
           this.commentList.unshift(result)
           this.editor.txt.clear()
           this.notifiySuccess('评论成功！')

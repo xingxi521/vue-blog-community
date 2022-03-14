@@ -64,7 +64,7 @@ export const notifiyError = function (message, isHtml, title, duration) {
  * @param {(string)} message
  * @param {(Object)} opt
  */
-export const confirmBox = async function(content, okCallBack, cancelCallBack, opt = {}) {
+export const confirmBox = function(content, okCallBack, cancelCallBack, opt = {}) {
   const option = Object.assign({
     title: '提示',
     content: content || '消息',

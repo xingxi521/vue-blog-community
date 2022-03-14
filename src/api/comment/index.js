@@ -34,3 +34,20 @@ export function setNice (data) {
     data
   })
 }
+// 编辑评论
+export function updateComment (data) {
+  return axios.request({
+    url: '/comment/updateComment',
+    method: 'post',
+    data
+  })
+}
+
+// 删除评论
+export function deleteComment (data) {
+  return axios.request({
+    url: '/comment/deleteComment',
+    method: 'post',
+    data
+  })
+}

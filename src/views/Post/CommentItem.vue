@@ -20,8 +20,8 @@
         <i class="iconfont icon-svgmoban53" /><span class="zan-conut" @click="replyToParent(item)">回复</span>
       </div>
       <div class="comment-bottom-right">
-        <span v-if="userInfo._id === item.uid._id && postData.isEnd !== 1" class="edit" @click="editHandler">编辑</span>
-        <span v-if="userInfo._id === item.uid._id && postData.isEnd !== 1" class="del">删除</span>
+        <span v-if="userInfo._id === item.uid._id && postData.isEnd !== 1" class="edit" @click="editHandler(item)">编辑</span>
+        <span v-if="userInfo._id === item.uid._id && postData.isEnd !== 1" class="del" @click="delCommentHandler(item)">删除</span>
         <span v-if="userInfo._id === postData.userInfo._id && postData.isEnd !== 1" class="accept" @click="acceptHandler(item)">采纳</span>
       </div>
     </div>
@@ -47,7 +47,7 @@
             <div>”</div>
           </div>
           <div class="content-bottom-left">
-            <i class="iconfont icon-zan" :class="{ 'zan-active': item.isNice }" @click="niceHandler(item)" /><span class="zan-conut">{{ item.niceCount }}</span>
+            <i class="iconfont icon-zan" :class="{ 'zan-active': child.isNice }" @click="niceHandler(child)" /><span class="zan-conut">{{ child.niceCount }}</span>
             <i class="iconfont icon-svgmoban53" /><span class="zan-conut" @click="replyToSon(item, child)">回复</span>
           </div>
         </div>
@@ -64,9 +64,9 @@
 /**
  * 评论项组件
  */
-import { formatCreateTime, scrollToElem, getObjByAttr } from '@/utils/public'
+import { formatCreateTime, getObjByAttr } from '@/utils/public'
 import { mapState } from 'vuex'
-import { setBestComment, setNice, addComment } from '@/api/comment'
+import { setBestComment, setNice, addComment, updateComment, deleteComment } from '@/api/comment'
 import config from '@/config'
 export default {
   name: 'CommentItem',
@@ -104,12 +104,16 @@ export default {
       return formatCreateTime(time)
     },
     // 编辑按钮事件
-    editHandler() {
-      scrollToElem('#editor', 1000, -60)
+    editHandler(item) {
+      this.isShow = true
+      this.submitData = {
+        type: 'edit',
+        content: item.content,
+        _id: item._id
+      }
     },
     // 采纳按钮事件
     acceptHandler(item) {
-      console.log(item)
       if (this.isLogin) {
         setBestComment({
           tid: item.tid,
@@ -178,9 +182,34 @@ export default {
             result.replyToData = getObjByAttr(this.item.children, '_id', this.submitData.replyToCid)
           }
           this.item.children.push(result)
-          this.notifiySuccess('回复成功！')
+          this.$pop('shake', '回复成功！')
           this.isShow = false
         })
+      } else if (this.submitData.type === 'edit') {
+        if (!this.submitData.content) {
+          this.$pop('shake', '请输入内容再提交！')
+          return
+        }
+        updateComment(this.submitData).then(res => {
+          this.item.content = this.submitData.content
+          this.$pop('shake', res.msg)
+          this.isShow = false
+        })
+      }
+    },
+    // 删除评论按钮事件
+    delCommentHandler(item) {
+      if (this.isLogin) {
+        this.confirmBox('确定要删除该评论吗？', () => {
+          deleteComment({
+            _id: item._id
+          }).then(res => {
+            this.$pop('shake', res.msg)
+            this.$parent.getCommentListRequest()
+          })
+        }, () => {})
+      } else {
+        this.$pop('shake', '请先登录')
       }
     }
   }
