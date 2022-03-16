@@ -40,3 +40,35 @@ export function uploadFile (data) {
     data
   })
 }
+
+// 获取本周热议
+export function getTopWeek () {
+  return axios.request({
+    url: '/public/topWeek',
+    method: 'get'
+  })
+}
+
+// 获取最快签到记录
+export function getNewSign () {
+  return axios.request({
+    url: '/public/getNewSign',
+    method: 'get'
+  })
+}
+
+// 获取今天最快签到
+export function getFaskSign () {
+  return axios.request({
+    url: '/public/getFaskSign',
+    method: 'get'
+  })
+}
+
+// 获取签到总榜
+export function getTopSign () {
+  return axios.request({
+    url: '/public/getTopSign',
+    method: 'get'
+  })
+}

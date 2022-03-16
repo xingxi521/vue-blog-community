@@ -2,18 +2,11 @@
   <div class="box-panel">
     <h3 class="box-panel-title">本周热议</h3>
     <div class="hot-box">
-      <div class="hot-box-item">
-        这是本周的一个热议
+      <div v-for="item in topData" :key="item._id" class="hot-box-item">
+        <router-link :to="{ name:'PostDetails', params: {id:item._id} }">{{ item.title }}</router-link>
         <span>
-          <i class="iconfont icon-pinglun1"></i>
-          0
-        </span>
-      </div>
-      <div class="hot-box-item">
-        这是本周的一个热议
-        <span>
-          <i class="iconfont icon-pinglun1"></i>
-          0
+          <i class="iconfont icon-pinglun1" />
+          {{ item.answer }}
         </span>
       </div>
     </div>
@@ -21,8 +14,24 @@
 </template>
 
 <script>
+import { getTopWeek } from '@/api/public'
 export default {
-  name: 'WeekHot'
+  name: 'WeekHot',
+  data() {
+    return {
+      topData: []
+    }
+  },
+  mounted() {
+    this.getTopWeekRequest()
+  },
+  methods: {
+    getTopWeekRequest() {
+      getTopWeek().then(res => {
+        this.topData = res.data
+      })
+    }
+  }
 }
 </script>
 
@@ -37,6 +46,7 @@ export default {
     }
     span{
       color: #ccc;
+      margin-left: 10px;
       i{
         position: relative;
         top: 2px;
