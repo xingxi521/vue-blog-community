@@ -39,12 +39,16 @@
 /**
  * 个人中心
  */
+import { mapState } from 'vuex'
 export default {
   name: 'Center',
   data() {
     return {
       selectedKeys: []
     }
+  },
+  computed: {
+    ...mapState(['userInfo'])
   },
   mounted() {
     this.selectedKeys = this.$stroage.getItem('currentCenter') || ['user']
@@ -63,6 +67,8 @@ export default {
         this.$router.push({ name: 'Base' }, () => {})
       } else if (key === 'post') {
         this.$router.push({ name: 'MyPost' }, () => {})
+      } else if (key === 'my') {
+        this.$router.push({ name: 'User', params: { id: this.userInfo._id }}, () => {})
       }
     },
     setSelectKeys(value) {

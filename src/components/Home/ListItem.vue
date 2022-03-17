@@ -1,7 +1,7 @@
 <template>
   <div class="list-item-main">
     <div class="list-item-left">
-      <img :src="env === 'development' ? config.baseUrl.dev + item.userInfo.pic : config.baseUrl.prod + item.userInfo.pic" alt="">
+      <img :src="env === 'development' ? config.baseUrl.dev + item.userInfo.pic : config.baseUrl.prod + item.userInfo.pic" alt="" style="cursor: pointer;" @click="gotoUserDetails(item.userInfo._id)">
     </div>
     <div class="list-item-right">
       <div class="list-item-top">
@@ -66,6 +66,10 @@ export default {
     // 跳转到文章详情
     jumpToDetails(item) {
       this.$router.push({ name: 'PostDetails', params: { id: item._id }})
+    },
+    // 跳转用户主页
+    gotoUserDetails(id) {
+      this.$router.push({ name: 'User', params: { id }})
     }
   }
 }

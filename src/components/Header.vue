@@ -80,8 +80,8 @@ export default {
         this.$router.push({ name: 'UserCenter' })
       } else if (key === 'message') { // 我的消息
 
-      } else if (key === 'home') { // 我的主页
-
+      } else if (key === 'my') { // 我的主页
+        this.$router.push({ name: 'User', params: { id: this.userInfo._id }})
       } else if (key === 'logout') { // 安全退出
         this.SET_USERINFO({})
         this.SET_LOGIN(false)

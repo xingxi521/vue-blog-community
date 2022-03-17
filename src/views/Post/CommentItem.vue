@@ -4,7 +4,7 @@
       <img :src="env === 'development' ? config.baseUrl.dev + item.uid.pic : config.baseUrl.prod + item.uid.pic" alt="">
       <div class="userinfo-right">
         <div class="userinfo-right-top">
-          <span class="top-nickname">{{ item.uid.nickName }}</span>
+          <span class="top-nickname" @click="gotoUserDetails(item.uid._id)">{{ item.uid.nickName }}</span>
           <span v-if="item && item.uid && item.uid.vip === 1" class="badge badge-red">VIP</span>
         </div>
         <div class="userinfo-right-bottom">
@@ -28,7 +28,7 @@
     <!-- 回复盖楼 -->
     <div v-if="item.children.length > 0" class="relpy-box">
       <div v-for="child in item.children" :key="child._id" class="reply-content">
-        <img class="reply-pic" :src="env === 'development' ? config.baseUrl.dev + child.uid.pic : config.baseUrl.prod + child.uid.pic" alt="">
+        <img class="reply-pic" :src="env === 'development' ? config.baseUrl.dev + child.uid.pic : config.baseUrl.prod + child.uid.pic" alt="" style="cursor: pointer;" @click="gotoUserDetails(child.uid._id)">
         <div class="reply-content-right">
           <div class="content-right-top">
             <span>
@@ -211,6 +211,10 @@ export default {
       } else {
         this.$pop('shake', '请先登录')
       }
+    },
+    // 跳转用户主页
+    gotoUserDetails(id) {
+      this.$router.push({ name: 'User', params: { id }})
     }
   }
 }

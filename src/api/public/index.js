@@ -72,3 +72,21 @@ export function getTopSign () {
     method: 'get'
   })
 }
+
+// 获取用户发帖数据
+export function getPostLately (data) {
+  return axios.request({
+    url: '/public/getPostLately',
+    method: 'post',
+    data
+  })
+}
+
+// 获取用户最近评论
+export function getCommentLately (data) {
+  return axios.request({
+    url: '/public/getCommentLately',
+    method: 'post',
+    data
+  })
+}

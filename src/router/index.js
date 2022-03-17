@@ -64,6 +64,12 @@ const routes = [
     name: 'PostDetails',
     props: true,
     component: () => import('@/views/Post/PostDetails.vue')
+  },
+  {
+    path: '/user/:id',
+    name: 'User',
+    props: true,
+    component: () => import('@/views/User.vue')
   }
 ]
 

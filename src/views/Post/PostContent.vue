@@ -24,7 +24,7 @@
       </template>
       <div class="userinfo-right">
         <div class="userinfo-right-top">
-          <span class="top-nickname">{{ content && content.userInfo ? content.userInfo.nickName : '' }}</span>
+          <span class="top-nickname" @click="gotoUserDetails(content.userInfo._id)">{{ content && content.userInfo ? content.userInfo.nickName : '' }}</span>
           <span v-if="content && content.userInfo && content.userInfo.vip === 1" class="badge badge-red">VIP</span>
           <span class="top-time">{{ formatCreateTime(content.createTime) }}</span>
         </div>
@@ -119,6 +119,10 @@ export default {
           this.content.isCollect = !this.content.isCollect
         })
       }
+    },
+    // 跳转用户主页
+    gotoUserDetails(id) {
+      this.$router.push({ name: 'User', params: { id }})
     }
   }
 }
