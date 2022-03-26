@@ -106,7 +106,8 @@ export default {
       } else {
         addComment({
           content,
-          tid: this.postData._id
+          tid: this.postData._id,
+          cuid: this.postData.userInfo._id
         }).then(res => {
           const result = res.data
           result.uid = {

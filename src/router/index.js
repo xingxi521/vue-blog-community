@@ -45,6 +45,11 @@ const routes = [
         path: 'mypost',
         name: 'MyPost',
         component: () => import('@/views/Center/MyPost.vue')
+      },
+      {
+        path: 'message',
+        name: 'Message',
+        component: () => import('@/views/Center/Message.vue')
       }
     ]
   },

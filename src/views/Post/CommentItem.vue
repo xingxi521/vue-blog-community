@@ -148,7 +148,8 @@ export default {
         type: 'reply',
         content: '',
         tid: item.tid,
-        cid: item._id
+        cid: item._id,
+        cuid: item.uid._id
       }
     },
     // 二级评论回复
@@ -159,7 +160,8 @@ export default {
         content: '',
         tid: pItem.tid,
         cid: pItem._id,
-        replyToCid: sItem._id
+        replyToCid: sItem._id,
+        cuid: sItem.uid._id
       }
     },
     // 弹出提交事件

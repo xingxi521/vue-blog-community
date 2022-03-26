@@ -24,9 +24,10 @@
             <li class="header-nav-item">
               <!--  -->
               <a-dropdown>
-                <router-link to="/center" class="avatar" href="javascript:;">
+                <router-link to="/center" class="avatar">
                   <img class="login-avatar" :src="env === 'development' ? config.baseUrl.dev + userInfo.pic : config.baseUrl.prod + userInfo.pic" alt="">
                   {{ userInfo.nickName }}
+                  <a-badge v-show="noReadNum && noReadNum > 0" :count="noReadNum" style="margin-left: 10px;" />
                 </router-link>
                 <a-menu slot="overlay" @click="onClickMenu">
                   <a-menu-item key="info" disabled>
@@ -71,7 +72,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isLogin', 'userInfo'])
+    ...mapState(['isLogin', 'userInfo', 'noReadNum'])
   },
   methods: {
     ...mapMutations(['SET_USERINFO', 'SET_LOGIN', 'SET_TOKEN']),
@@ -79,7 +80,7 @@ export default {
       if (key === 'baseInfo') { // 基本信息
         this.$router.push({ name: 'UserCenter' })
       } else if (key === 'message') { // 我的消息
-
+        this.$router.push({ name: 'Message' })
       } else if (key === 'my') { // 我的主页
         this.$router.push({ name: 'User', params: { id: this.userInfo._id }})
       } else if (key === 'logout') { // 安全退出

@@ -6,8 +6,8 @@
         <div class="box-panel">
           <h3 class="box-panel-title">我的会员信息</h3>
           <div class="vip-info-box">
-            <p>积分经验值：1000</p>
-            <p>您当前为：非VIP</p>
+            <p>积分经验值：{{ userInfo.favs }}</p>
+            <p>您当前为：{{ userInfo.isVip ? 'vip': '非VIP' }}</p>
           </div>
         </div>
       </a-col>
@@ -35,8 +35,7 @@
 /**
  * 用户中心
  */
-import { mapState } from 'vuex'
-
+import { getUserInfo } from '@/api/center'
 export default {
   name: 'UserCenter',
   components: {
@@ -80,13 +79,21 @@ export default {
           link: '/center/mypost',
           name: 'myPost'
         }
-      ]
+      ],
+      // 用户信息
+      userInfo: {}
     }
   },
-  computed: {
-    ...mapState(['userInfo'])
+  mounted() {
+    this.getUserInfoRequest()
   },
   methods: {
+    // 获取用户信息
+    getUserInfoRequest() {
+      getUserInfo().then(res => {
+        this.userInfo = res.data
+      })
+    },
     setMenuSelectHandler(item) {
       if (item.link === '/center/base') {
         this.$parent.setSelectKeys('setting')

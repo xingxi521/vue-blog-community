@@ -69,6 +69,8 @@ export default {
         this.$router.push({ name: 'MyPost' }, () => {})
       } else if (key === 'my') {
         this.$router.push({ name: 'User', params: { id: this.userInfo._id }}, () => {})
+      } else if (key === 'message') {
+        this.$router.push({ name: 'Message' }, () => {})
       }
     },
     setSelectKeys(value) {

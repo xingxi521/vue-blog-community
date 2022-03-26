@@ -1,4 +1,5 @@
 export default {
+  // 请求地址设置
   baseUrl: {
     dev: 'http://localhost:3000/',
     prod: 'http://192.168.56.1:12005/',
@@ -7,5 +8,10 @@ export default {
   // 是否开启全局mock状态
   isMock: false,
   // 本地存储命名空间
-  stroageSpace: 'community'
+  stroageSpace: 'community',
+  // webSocket链接地址设置
+  socketUrl: {
+    dev: 'ws://127.0.0.1:3001',
+    prod: 'ws://192.168.56.1:12006'
+  }
 }

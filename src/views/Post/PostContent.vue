@@ -8,7 +8,12 @@
         <span v-if="content.isTop" class="badge badge-black">置顶</span>
         <span v-for="tag in []" :key="`tag_${tag.title}`" class="badge" :class="tag.className">{{ tag.title }}</span>
         <!-- 发帖人或者超管账号可以删除 -->
-        <span v-if="(content && content.userInfo && userInfo._id === content.userInfo._id) || (content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN)" class="badge badge-green" style="margin-left:35px;">删除</span>
+        <span
+          v-if="(content && content.userInfo && userInfo._id === content.userInfo._id) || (content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN)"
+          class="badge badge-green"
+          style="margin-left:35px;"
+          @click="deletePost(content._id)"
+        >删除</span>
         <span v-if="content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN" class="badge badge-green">置顶</span>
         <span v-if="content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN" class="badge badge-green">加精</span>
       </div>
@@ -58,7 +63,7 @@
 import { mapState } from 'vuex'
 import { ROLE_TYPE } from '@/utils/const/publlic'
 import { formatCreateTime } from '@/utils/public'
-import { collectPost } from '@/api/post'
+import { collectPost, deletePost } from '@/api/post'
 import config from '@/config'
 export default {
   name: 'PostContent',
@@ -123,6 +128,15 @@ export default {
     // 跳转用户主页
     gotoUserDetails(id) {
       this.$router.push({ name: 'User', params: { id }})
+    },
+    // 删除帖子
+    deletePost(id) {
+      deletePost({
+        tid: id
+      }).then(res => {
+        this.$pop('shake', res.msg)
+        this.$router.push('/')
+      })
     }
   }
 }

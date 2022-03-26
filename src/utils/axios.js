@@ -38,6 +38,10 @@ class HttpRequest {
       if (config.mock || (configUrl.isMock && process.env.NODE_ENV === 'development')) {
         config.baseURL = configUrl.baseUrl.mock
       }
+      if (store.state.token && !store.state.wsc) {
+        // 初始化socket
+        store.commit('INIT_SOCKET', {})
+      }
       // const key = `${config.url}&${config.method}`
       // this.removePending(key, true)
       // config.cancelToken = new CancelToken((c) => {

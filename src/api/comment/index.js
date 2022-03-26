@@ -51,3 +51,29 @@ export function deleteComment (data) {
     data
   })
 }
+
+// 获取未读消息
+export function getNoReadComment (data) {
+  return axios.request({
+    url: '/comment/getNoReadComment',
+    method: 'post',
+    data
+  })
+}
+
+// 标记为已读消息
+export function markCommentRead (params) {
+  return axios.request({
+    url: '/comment/markCommentRead',
+    method: 'get',
+    params
+  })
+}
+
+// 清空所有未读消息
+export function markAllComment () {
+  return axios.request({
+    url: '/comment/markAllComment',
+    method: 'get'
+  })
+}
