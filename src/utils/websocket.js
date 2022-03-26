@@ -55,10 +55,12 @@ class WebSocketClient {
         break
       case SOCKET_EVENT.GET_NO_READ_COUNT: // 设置未读消息数
         store.commit('SET_NO_READ_MESSAGE', mapObj.message)
-        message.success({
-          content: `您有${mapObj.message}条未读消息`,
-          duration: 3
-        })
+        if (mapObj.message > 0) {
+          message.success({
+            content: `您有${mapObj.message}条未读消息`,
+            duration: 3
+          })
+        }
         break
       default:
         break

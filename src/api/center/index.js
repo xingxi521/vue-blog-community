@@ -25,10 +25,11 @@ export function updateUserInfo (data) {
 }
 
 // 获取用户信息
-export function getUserInfo () {
+export function getUserInfo (params) {
   return axios.request({
     url: '/user/getUserInfo',
-    method: 'get'
+    method: 'get',
+    params
   })
 }
 

@@ -101,7 +101,9 @@ export default {
     },
     // 获取用户信息
     getUserInfoRequest() {
-      getUserInfo().then(res => {
+      getUserInfo({
+        _id: this.$route.params.id
+      }).then(res => {
         this.userInfo = res.data
       })
     },

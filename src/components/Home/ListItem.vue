@@ -15,7 +15,7 @@
       </div>
       <div class="list-item-bottom">
         <div class="bottom-left">
-          <a href="javascript:;">{{ item.userInfo.nickName }}<span v-if="item.userInfo.vip === 1" class="left-vip badge-red">VIP</span></a>
+          <a href="javascript:;">{{ item.userInfo.nickName }}<span v-if="item.userInfo.vip === 1" class="left-vip badge badge-red">VIP</span></a>
           <span class="left-time">{{ formatCreateTime(item.createTime) }}</span>
           <span class="left-fav"><i class="iconfont icon-kiss" />{{ item.fav }}</span>
         </div>
