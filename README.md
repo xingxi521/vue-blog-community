@@ -8,6 +8,8 @@
 http://82.157.55.15/#/
 ## API接口文档地址
 http://82.157.55.15:4999/web/#/7/50
+## 掘金对应帖子地址
+https://juejin.cn/post/7079638553386287134
 ## 源码地址
 - 前端：https://github.com/xingxi521/community-pc
 - 后端：https://github.com/xingxi521/community-api
