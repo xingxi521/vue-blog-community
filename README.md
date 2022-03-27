@@ -6,6 +6,8 @@
 ![QQ图片20220327105600.gif](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ad0e59b07bbf4518893fd6dbd240e9ad~tplv-k3u1fbpfcp-watermark.image?)
 ## 成品演示地址
 http://82.157.55.15/#/
+## API接口文档地址
+http://82.157.55.15:4999/web/#/7/50
 ## 源码地址
 - 前端：https://github.com/xingxi521/community-pc
 - 后端：https://github.com/xingxi521/community-api
@@ -90,7 +92,7 @@ isMock为true时则开启整个项目走mock请求
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1362458ced24614863cfa57924b0b61~tplv-k3u1fbpfcp-watermark.image?)
 
 ![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/52b726daac5e4f2fabd0c637012d12c8~tplv-k3u1fbpfcp-watermark.image?)
-盖楼回复
+
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a3f8ce02079d4e1f87e4f203b2652bad~tplv-k3u1fbpfcp-watermark.image?)
 
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3213cee9efb741d1bb4d25df76d37de8~tplv-k3u1fbpfcp-watermark.image?)
