@@ -9,13 +9,13 @@
         <span v-for="tag in []" :key="`tag_${tag.title}`" class="badge" :class="tag.className">{{ tag.title }}</span>
         <!-- 发帖人或者超管账号可以删除 -->
         <span
-          v-if="(content && content.userInfo && userInfo._id === content.userInfo._id) || (content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN)"
+          v-if="(content && content.userInfo && userInfo._id === content.userInfo._id) || (userInfo && userInfo.role && userInfo.role.includes(ROLE_TYPE.SUPER_ADMIN))"
           class="badge badge-green"
           style="margin-left:35px;"
           @click="deletePost(content._id)"
         >删除</span>
-        <span v-if="content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN" class="badge badge-green">置顶</span>
-        <span v-if="content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN" class="badge badge-green">加精</span>
+        <span v-if="userInfo && userInfo.role && userInfo.role.includes(ROLE_TYPE.SUPER_ADMIN)" class="badge badge-green">置顶</span>
+        <span v-if="userInfo && userInfo.role && userInfo.role.includes(ROLE_TYPE.SUPER_ADMIN)" class="badge badge-green">加精</span>
       </div>
       <div class="detail-info-right">
         <i class="iconfont"></i>{{ content.answer }}
@@ -37,7 +37,7 @@
           <span class="bottom-xuan">悬赏：{{ content.fav }}积分</span>
           <div class="btn-group">
             <a-button
-              v-if="(content && content.userInfo && userInfo._id === content.userInfo._id && content.isEnd !== 1) || (content && content.userInfo && content.userInfo.role === ROLE_TYPE.SUPER_ADMIN && content.isEnd !== 1)"
+              v-if="(content && content.userInfo && userInfo._id === content.userInfo._id && content.isEnd !== 1) || (userInfo && userInfo.role && userInfo.role.includes(ROLE_TYPE.SUPER_ADMIN) && content.isEnd !== 1)"
               type="primary"
               size="small"
               class="bottom-editpost"
