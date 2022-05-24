@@ -4,7 +4,7 @@
       <!-- 登录 -->
       <a-tab-pane key="login" tab="登录">
         <a-row v-if="currentTabs === 'login'">
-          <a-col :span="8">
+          <a-col :sm="8" :xs="24">
             <a-form-model
               ref="loginForm"
               :model="formData"
@@ -42,7 +42,7 @@
       <!-- 注册 -->
       <a-tab-pane key="register" tab="注册" force-render>
         <a-row v-if="currentTabs === 'register'">
-          <a-col :span="8">
+          <a-col :sm="8" :xs="24">
             <a-form-model
               ref="loginForm"
               :model="formData"
@@ -78,7 +78,7 @@
       <!-- 忘记密码 -->
       <a-tab-pane key="forget" tab="忘记密码" force-render>
         <a-row v-if="currentTabs === 'forget'">
-          <a-col :span="8">
+          <a-col :sm="8" :xs="24">
             <a-form-model
               ref="loginForm"
               :model="formData"
